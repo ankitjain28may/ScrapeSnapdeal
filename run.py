@@ -18,14 +18,14 @@ header={'User-Agent':"Mozilla/6.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KH
 }
 
 ActualProducts=[] # contains the link for the products
+BrowserChoice = int(input("1- Chrome Browser\n2- Mozilla Firefox\n3- PhantomJS\nEnter the browser choice\t"))
 
-
-query = input("Enter Product Name\n") # you can change the query for the product  here
+# you can change the query for the product  here
+query = input("Enter Product Name\n")
 query= query.split()
 query='+'.join(query)
 url = "https://www.snapdeal.com/search?keyword="+query+"&santizedKeyword=&catId=&categoryId=0&suggested=false&vertical=&noOfResults=20&searchState=&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&cityPageUrl=&categoryUrl=&url=&utmContent=&dealDetail=&sort=rlvncy"
 
-# print(url)
 
 soup = get_soup(url,header)
 print(soup.title.string)
@@ -39,8 +39,6 @@ for a in product:
             ActualProducts.append((link,name))
     except Exception:
         pass
-
-# print(ActualProducts)
 
 for i ,(link,name) in enumerate(ActualProducts):
     try:
@@ -56,23 +54,20 @@ link,name = ActualProducts[review]
 print(link)
 # Start the WebDriver and load the page
 
-# Chrome Browser
-
-# service = service.Service('chromedriver.exe')
-# service.start()
-# capabilities = {'chrome.binary': '/chromedriver.exe'}
-# driver = webdriver.Remote(service.service_url, capabilities)
-
-# PhantomJS
-
-driver = webdriver.PhantomJS(executable_path=r'C:\Users\ankit\Downloads\phantomjs-2.1.1-windows (1)\phantomjs-2.1.1-windows\bin\phantomjs.exe')
-driver.set_window_size(1120, 550)
-
-
-# Firefox Browser
-
-# binary = FirefoxBinary('C:\Program Files (x86)\Mozilla Firefox\Firefox.exe')
-# driver = webdriver.Firefox(firefox_binary=binary)
+if BrowserChoice == 1:
+    # Chrome Browser
+    service = service.Service('chromedriver.exe')
+    service.start()
+    capabilities = {'chrome.binary': '/chromedriver.exe'}
+    driver = webdriver.Remote(service.service_url, capabilities)
+elif BrowserChoice == 2:
+    # Firefox Browser
+    binary = FirefoxBinary('C:\Program Files (x86)\Mozilla Firefox\Firefox.exe')
+    driver = webdriver.Firefox(firefox_binary=binary)
+else:
+    # PhantomJS
+    driver = webdriver.PhantomJS(executable_path=r'C:\Users\ankit\Downloads\phantomjs-2.1.1-windows (1)\phantomjs-2.1.1-windows\bin\phantomjs.exe')
+    driver.set_window_size(1120, 550)
 
 
 # Let the user actually see something!
