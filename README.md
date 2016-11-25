@@ -18,7 +18,7 @@
 
 3- Install Mozilla Firefox V40 or V47 and set the path in the `run.py` by default it is `C:\Program Files (x86)\Mozilla Firefox\Firefox.exe`
 
-4- Install [PhantomJS](http://phantomjs.org/) and set it executable path in the `run.py`
+4- Install [PhantomJS](http://phantomjs.org/) and set its executable path in the `run.py`
 
 5- Install Chromedriver for Chrome users, it is uploaded in this package there is no need to set path for the chromedriver
 
